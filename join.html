@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content=" with=device-width, initial-scale=1.0">
+    <title>Kunwar Associates</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet">
+    <script src="https://kit.fontawesome.com/696b2a9365.js" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const form = document.getElementById("joinForm");
+      
+          form.addEventListener("submit", function(event) {
+              event.preventDefault(); // Prevent the default form submission
+      
+              // You can perform additional client-side validation here if needed
+      
+              // Send an AJAX request to your server-side script (sendmail.php)
+              fetch("sendmail.php", {
+                  method: "POST",
+                  body: new FormData(form),
+              })
+              .then(response => {
+                  if (response.ok) {
+                      return response.text();
+                  } else {
+                      throw new Error("Email sending failed.");
+                  }
+              })
+              .then(data => {
+                  // Display a success message or perform other actions on success
+                  alert("Message Sent");
+              })
+              .catch(error => {
+                  // Handle errors and display an error message
+                  console.error(error);
+                  alert("Message not sent. Please try again.");
+              });
+          });
+      });
+      </script>
+      
+  </head>
+  
+  <body>
+      <section class="header">
+        <div class="alert">Message Sent</div>
+        <nav>
+          <a href="index.html"><img src="Website Photos/17.jpg"></a>
+          <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+              <li><a href="index.html">HOME</a></li>
+              <li><a href="about.html">ABOUT</a></li>
+              <li><a href="service.html">SERVICE</a></li>
+              <li><a href="blog.html">BLOG</a></li>
+              <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+          </div>
+          <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+    
+        <div class="container">
+            <h2>Welcome to Kunwar Associates</h2>
+            <p><h>We can help you in marketing to make your product a top class brand</h></p>
+            <hr>
+        </div>
+        
+        <form action="sendmail.php" method="POST">
+        <div class="info">
+            <label for="cname"><b>Company Name</b></label>
+            <input type="text" id="companyname" placeholder="Enter your Company name" name="cname" required>
+        
+            <label for="oname"><b>Company Owner's full name</b></label>
+            <input type="text" id="ownername" placeholder="Enter Owner's full name" name="oname" required>
+        
+            <label for="email"><b>E-mail</b></label>
+            <input type="text" id="email" placeholder="Enter your email" name="email" required>
+  
+            <label for="address"><b>Company Address</b></label>
+            <input type="text" id="address" placeholder="Enter your address" name="address" required>
+  
+            <label for="cnumber"><b>Contact Number</b></label>
+            <input type="text" id="phoneno" placeholder="Enter your contact number" name="cnumber" required>
+  
+            <label for="type"><b>Type of Business</b></label>
+            <input type="text"id="type" placeholder="Enter your type of business" name="type" required>
+        </div>
+
+  
+        <div class="finish">
+            <label>
+              <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+            </label>
+        
+            <p>By joining our company you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+        
+            <div class="clearfix">
+              <button type="submit" class="signupbtn">Join Now</button>
+            </div>
+        </div>
+      </form>
+  
+  
+  
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+  <script type="text/javascript" src="./joinform.js"></script>          -->
+</html>
+
+
+</body>
+
